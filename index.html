@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Index of Pages</title>
+    <title>My Meme Page</title>
+    <style type="text/css">
+        body {
+            background: #00FF00 repeat-x top left;
+            color: #FF00FF;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            margin-top: 50px;
+            text-shadow: 2px 2px #000000;
+        }
+        a {
+            color: #0000FF;
+            font-size: 2em;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #FF0000;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <h1>Index of Pages</h1>
-  <ul>
+    <h1>Welcome to our Meme Pages</h1>
+    <p>Check out these awesome memes:</p>
     {% for page in site.pages %}
-      <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+      <li><a href=""></a></li>
+      <a href="{{ page.url }}">{{ page.title }}</a><br>
     {% endfor %}
-  </ul>
+	
 </body>
 </html>
