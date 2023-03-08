@@ -1,0 +1,56 @@
+---
+title: Peas
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+    <style type="text/css">
+      #hello {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+        color: purple;
+        animation: wiggle 1s ease-in-out infinite;
+      }
+      @keyframes wiggle {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        25% { transform: translate(-50%, -50%) rotate(10deg); }
+        50% { transform: translate(-50%, -50%) rotate(0deg); }
+        75% { transform: translate(-50%, -50%) rotate(-10deg); }
+        100% { transform: translate(-50%, -50%) rotate(0deg); }
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        animation: cycle 5s ease-in-out infinite;
+      }
+      @keyframes cycle {
+        0% { background-color: red; }
+        20% { background-color: orange; }
+        40% { background-color: yellow; }
+        60% { background-color: green; }
+        80% { background-color: blue; }
+        100% { background-color: purple; }
+      }
+      .hello {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="hello">I really need to pee</div>
+  </body>
