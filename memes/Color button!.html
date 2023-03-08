@@ -1,0 +1,55 @@
+---
+title: Click the box to see it change!
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Abstract Page</title>
+    <style>
+      body {
+        background-color: #222;
+        color: #fff;
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+      
+      #content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      
+      #box {
+        width: 200px;
+        height: 200px;
+        background-color: #fff;
+        border-radius: 50%;
+        transition: all .5s ease-in-out;
+      }
+      
+      #box:hover {
+        transform: scale(1.2) rotate(45deg);
+        background-color: #ff5722;
+        box-shadow: 0 0 10px #ff5722;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Click the box to see it change!</h1>
+    <div id="content">
+      <div id="box"></div>
+    </div>
+    <script>
+      var box = document.getElementById('box');
+      
+      function changeBox() {
+        var colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#00bcd4', '#009688', '#4caf50', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722'];
+        var randomColor = colors[Math.floor(Math.random() * colors.length)];
+        box.style.backgroundColor = randomColor;
+      }
+      
+      box.addEventListener('click', changeBox);
+    </script>
+  </body>
+</html>
