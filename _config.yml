@@ -1,2 +1,22 @@
-theme: jekyll-theme-minimal
-baseurl: /pages
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
+
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Setup
+title:            'Memus Automaticus'
+#url:              https://technolus.github.io/memus-automaticus/
+baseurl:          /
+description:      Memes
