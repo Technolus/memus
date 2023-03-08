@@ -6,9 +6,13 @@ Once the page is generated, the bot uses Octokit, a Github API client, to create
 This automation helps to keep the site fresh with new content and reduces the manual effort required to add new pages.
 
 The current Github Pages site for this repository can be found at:
+
 https://rollthememes.thetechnolus.com/
+
          or
+         
 https://technolus.github.io/memus-automaticus/
+
 
 
 ## Manually adding New Pages to /memes
