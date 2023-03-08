@@ -34,7 +34,7 @@
     <p>Check out these awesome memes:</p>
 	{% for page in site.pages %}
 	  {% if page.url contains '/memes/' %}
-		<a href="./{{ page.url }}">{{ page.title }}</a><br>
+		<a href="{{ page.url | remove_first:'/' }}">{{ page.title }}</a><br>
 	  {% endif %}
 	{% endfor %}
  
