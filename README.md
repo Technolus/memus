@@ -7,11 +7,10 @@ This automation helps to keep the site fresh with new content and reduces the ma
 
 The current Github Pages site for this repository can be found at:
 
-https://rollthememes.thetechnolus.com/
+- https://rollthememes.thetechnolus.com/
 
-         or
-         
-https://technolus.github.io/memus-automaticus/
+or
+- https://technolus.github.io/memus-automaticus/
 
 
 
