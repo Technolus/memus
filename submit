@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Post Request Example</title>
+    <script>
+      function submitForm() {
+        var form = document.getElementById("myForm");
+        var xhr = new XMLHttpRequest();
+        xhr.open(form.method, form.action, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.error) {
+              document.getElementById("result").textContent = "Error: " + response.error;
+            }else{
+              document.getElementById("result").textContent = "Returned URL: " + response.url;
+            }
+          }
+        };
+        xhr.send(new FormData(form));
+        return false;
+      }
+    </script>
+  </head>
+  <body>
+    <form id="myForm" method="POST" action="https://memeuploader.thetechnolus.com/">
+      <label for="filePath">File Path:</label>
+      <input type="text" id="filePath" name="filePath"><br><br>
+      <label for="contents">Contents:</label>
+      <input type="text" id="contents" name="contents"><br><br>
+      <input type="submit" value="Submit" onclick="return submitForm()">
+    </form>
+    <p id="result"></p>
+  </body>
+</html>
