@@ -1,0 +1,128 @@
+---
+title: Chungus
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Big Chungus Meme</title>
+	<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f1f1f1;
+		animation: rainbow 10s infinite;
+	}
+	@keyframes rainbow {
+		0% { background-color: red; }
+		17% { background-color: orange; }
+		34% { background-color: yellow; }
+		51% { background-color: green; }
+		68% { background-color: blue; }
+		85% { background-color: indigo; }
+		100% { background-color: violet; }
+	}
+
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+        color: #333;
+    }
+
+    img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        height: auto;
+    }
+	
+	
+	@keyframes move {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(50px, 50px);
+    }
+
+    50% {
+        transform: translate(0, 100px);
+    }
+
+    75% {
+        transform: translate(-50px, 50px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+span.animated {
+    animation: move 1s ease-in-out infinite;
+}
+</style>
+</head>
+<body>
+    <h1>Big Chungus is Inside Your Walls</h1>
+    <img src="https://samequizy.pl/wp-content/uploads/2022/07/07/images_0165c13f111e50a5.jpg" alt="Big Chungus Image">
+    <p>Big Chungus is a popular internet meme featuring a parody of the Bugs Bunny character.</p>
+    <p>But did you know that Big Chungus is also inside your walls?</p>
+    <p>That's right, this beloved meme has infiltrated not just the internet, but also your home.</p>
+	<span class="animated">
+    <p>So be on the lookout for signs of Big Chungus in your walls, and remember to always stay meme-aware!</p>
+	</span>
+	<script>
+	document.addEventListener("click", function(event) {
+		setInterval(shake, 100); // beep every second
+	});
+	function shake(){
+		const body = document.querySelector("body");
+		body.style.transform = "translate(5px, 5px)";
+		setTimeout(() => {
+			body.style.transform = "translate(-5px, -5px)";
+		}, 50);
+		setTimeout(() => {
+			body.style.transform = "translate(5px, -5px)";
+		}, 100);
+		setTimeout(() => {
+			body.style.transform = "translate(-5px, 5px)";
+		}, 150);
+		setTimeout(() => {
+			body.style.transform = "none";
+		}, 200);
+    }
+	document.addEventListener("DOMContentLoaded", function(event) {
+		function beep() {
+			var audio = new Audio('https://www.myinstants.com/media/sounds/brain-fart.mp3'); // replace with path to your beep sound file
+			audio.play();
+		}
+		setInterval(beep, 1000); // beep every second
+		
+		// Set up the text string
+		var text = "Big Chungus is Inside Your Walls";
+
+		// Get the body element
+		var body = document.querySelector("body");
+
+		// Loop through each character in the string
+		for (var i = 0; i < text.length; i++) {
+			// Create a span element for each character
+			var span = document.createElement("span");
+			// Add the character to the span
+			span.textContent = text.charAt(i);
+			// Add the span to the body
+			body.appendChild(span);
+		}
+
+		// Add a class to each span to animate it
+		var spans = document.querySelectorAll("span");
+		for (var i = 0; i < spans.length; i++) {
+			spans[i].classList.add("animated");
+		}
+		
+	});
+	</script>
+</body>
+</html>
