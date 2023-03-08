@@ -13,8 +13,8 @@
             var response = JSON.parse(xhr.responseText);
             if (response.error) {
               document.getElementById("result").innerHTML = "Error: " + response.error;
-            }else{
-               response.url = response.url.replace("https://technolus.github.io/memus-automaticus", "https://rollthememes.thetechnolus.com");
+            } else {
+              response.url = response.url.replace("https://technolus.github.io/memus-automaticus", "https://rollthememes.thetechnolus.com");
               document.getElementById("result").innerHTML = `Returned URL: <a href="${response.url}">${response.url}</a>`;
             }
           }
@@ -26,6 +26,12 @@
         xhr.send(JSON.stringify(formData));
         return false;
       }
+
+      function previewHTML() {
+        var contents = document.getElementById("contents").value;
+        var previewWindow = window.open("", "Preview");
+        previewWindow.document.write(contents);
+      }
     </script>
   </head>
   <body>
@@ -35,6 +41,7 @@
       <label for="contents">html:</label>
       <textarea id="contents" name="contents" cols="80" rows="10" style="font-family: monospace; font-size: 16px;"></textarea>
       <br><br>
+      <input type="button" value="Preview HTML" onclick="previewHTML()">
       <input type="submit" value="Submit" onclick="return submitForm()">
     </form>
     <p id="result"></p>
