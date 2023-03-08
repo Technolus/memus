@@ -1,0 +1,148 @@
+---
+title: Snakus
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Game</title>
+    <style>
+      body {
+        background-color: #333;
+        color: #fff;
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        text-align: center;
+        font-size: 3em;
+      }
+      #game-container {
+        width: 80%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #f00;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        margin-right: 10px;
+      }
+      .button:hover {
+        background-color: #d00;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My Game</h1>
+    <div id="game-container">
+      <!-- game content goes here -->
+      <a href="#" class="button">Start Game</a>
+    </div>
+<script>
+// Define variables
+var canvas = document.createElement('canvas');
+var ctx = canvas.getContext('2d');
+var gameContainer = document.getElementById('game-container');
+var button = document.querySelector('.button');
+var snakeSegments = [{x: 0, y: 0}];
+var gridSize = 20;
+var direction = 'right';
+var intervalId;
+
+// Set canvas dimensions to game container
+canvas.width = gameContainer.offsetWidth;
+canvas.height = gameContainer.offsetHeight;
+
+// Add canvas to game container
+gameContainer.appendChild(canvas);
+
+// Hide canvas and button initially
+canvas.style.display = 'none';
+button.style.display = 'block';
+
+// Function to start the game
+function startGame() {
+  // Show canvas and hide button
+  canvas.style.display = 'block';
+  button.style.display = 'none';
+
+  // Set initial position of snake segments
+  for (var i = 1; i < 5; i++) {
+    snakeSegments.push({x: i * gridSize, y: 0});
+  }
+
+  // Set initial direction of snake
+  direction = 'right';
+
+  // Start game loop
+  intervalId = setInterval(gameLoop, 100);
+}
+
+// Function to update game state
+function gameLoop() {
+  // Move the snake based on direction
+  var head = {x: snakeSegments[0].x, y: snakeSegments[0].y};
+  switch (direction) {
+    case 'up':
+      head.y -= gridSize;
+      break;
+    case 'down':
+      head.y += gridSize;
+      break;
+    case 'left':
+      head.x -= gridSize;
+      break;
+    case 'right':
+      head.x += gridSize;
+      break;
+  }
+  snakeSegments.unshift(head);
+  snakeSegments.pop();
+
+  // Clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw snake segments
+  for (var i = 0; i < snakeSegments.length; i++) {
+    ctx.fillStyle = 'white';
+    ctx.fillRect(snakeSegments[i].x, snakeSegments[i].y, gridSize, gridSize);
+    ctx.fillStyle = 'url(https://media.giphy.com/media/Sv8yjxTCFz9Vu/giphy.gif)';
+    ctx.fillRect(snakeSegments[i].x, snakeSegments[i].y, gridSize, gridSize);
+  }
+}
+
+// Function to handle keyboard input
+document.addEventListener('keydown', function(event) {
+  switch (event.keyCode) {
+    case 37: // left arrow
+      if (direction !== 'right') {
+        direction = 'left';
+      }
+      break;
+    case 38: // up arrow
+      if (direction !== 'down') {
+        direction = 'up';
+      }
+      break;
+    case 39: // right arrow
+      if (direction !== 'left') {
+        direction = 'right';
+      }
+      break;
+    case 40: // down arrow
+      if (direction !== 'up') {
+        direction = 'down';
+      }
+      break;
+  }
+});
+</script>
+  </body>
+</html>
