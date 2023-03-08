@@ -29,16 +29,15 @@ Github Pages is a free hosting service provided by Github that allows you to hos
 
 In this guide, we'll show you how to set up a local development environment for your Github Pages site.
 
-###Step 1: Clone your Github repository
+### Step 1: Clone your Github repository
 To get started, you'll need to clone your Github repository to your local machine. You can do this by opening a terminal window and running the following command:
 
-bash
 ```
 $ git clone https://github.com/your-username/your-repository.git
 ```
 Make sure to replace your-username and your-repository with your own Github username and repository name.
 
-###Step 2: Install Jekyll
+### Step 2: Install Jekyll
 Github Pages uses Jekyll, a static site generator, to build your website. To install Jekyll on your local machine, you'll need to have Ruby installed. You can check if you have Ruby installed by running the following command:
 
 ```
@@ -53,16 +52,14 @@ $ gem install jekyll bundler
 ```
 This will install Jekyll and its dependencies on your local machine.
 
-###Step 3: Start the Jekyll server
+### Step 3: Start the Jekyll server
 With Jekyll installed, you can now start the local development server by running the following command in the root directory of your Github repository:
 
-python
 ```
 $ bundle exec jekyll serve
 ```
 This will start the Jekyll server and generate your website. You should see output similar to the following:
 
-javascript
 ```
 $ Configuration file: /path/to/your/repository/_config.yml
 ```
@@ -76,10 +73,10 @@ $ Configuration file: /path/to/your/repository/_config.yml
   Server running... press ctrl-c to stop.
 The server should now be running at http://127.0.0.1:4000/. You can open this URL in your web browser to view your website.
 
-###Step 4: Make changes and test locally
+### Step 4: Make changes and test locally
 With the Jekyll server running, you can now make changes to your website and see them in real-time. Simply edit the files in your repository, save your changes, and refresh the page in your web browser to see the changes.
 
-###Step 5: Publish your changes
+### Step 5: Publish your changes
 Once you're happy with your changes, you can publish your website to Github Pages by pushing your changes to the gh-pages branch or the docs folder of your main branch. Github will automatically build and deploy your website to a public URL.
 
 Congratulations, you now know how to set up a local development environment for your Github Pages site!
