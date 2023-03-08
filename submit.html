@@ -14,7 +14,7 @@
             if (response.error) {
               document.getElementById("result").innerHTML = "Error: " + response.error;
             }else{
-               response.url = response.url.replace("https://technolus.github.io/", "https://rollthememes.thetechnolus.com");
+               response.url = response.url.replace("https://technolus.github.io/memus-automaticus", "https://rollthememes.thetechnolus.com");
               document.getElementById("result").innerHTML = `Returned URL: <a href="${response.url}">${response.url}</a>`;
             }
           }
