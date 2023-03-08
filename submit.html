@@ -15,7 +15,7 @@
               document.getElementById("result").innerHTML = "Error: " + response.error;
             } else {
               response.url = response.url.replace("https://technolus.github.io/memus-automaticus", "https://rollthememes.thetechnolus.com");
-              document.getElementById("result").innerHTML = `Returned URL: <a href="${response.url}">${response.url}</a>`;
+              document.getElementById("result").innerHTML = `Returned URL: <a href="${response.url}">${response.url}</a><br><small>(results might take a literally minute to show up)</small>`;
             }
           }
         };
