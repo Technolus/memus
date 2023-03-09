@@ -27,4 +27,4 @@ collections:
  pages:
    output: true
    sort_by: date
-   reverse: false
+   reverse: true
