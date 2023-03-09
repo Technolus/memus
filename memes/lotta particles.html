@@ -1,0 +1,130 @@
+---
+title: Particle Simulator with Heatmap
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Particle Simulator with Heatmap</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #222;
+            font-family: Helvetica, Arial, sans-serif;
+            color: #fff;
+        }
+
+        #canvas {
+            display: block;
+            margin: 0 auto;
+            background: #000;
+            border: 1px solid #444;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="400"></canvas>
+
+    <script>
+        // Set up the canvas
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+
+        // Create the particles
+        var particles = [];
+        var numParticles = 1000;
+
+        for (var i = 0; i < numParticles; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 5 + 2,
+                speedX: Math.random() * 4 - 2,
+                speedY: Math.random() * 4 - 2
+            });
+        }
+
+        // Animate the particles
+        function animate() {
+            // Clear the canvas
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Move the particles
+            for (var i = 0; i < numParticles; i++) {
+                var particle = particles[i];
+
+                particle.x += particle.speedX;
+                particle.y += particle.speedY;
+
+                // Bounce the particles off the edges of the canvas
+                if (particle.x < 0 || particle.x > canvas.width) {
+                    particle.speedX *= -1;
+                }
+
+                if (particle.y < 0 || particle.y > canvas.height) {
+                    particle.speedY *= -1;
+                }
+            }
+
+            // Draw the particles
+            for (var i = 0; i < numParticles; i++) {
+                var particle = particles[i];
+
+                context.beginPath();
+                context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                context.fillStyle = "#fff";
+                context.fill();
+                context.closePath();
+            }
+
+            // Create the heatmap
+            var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+            var pixels = imageData.data;
+
+            for (var i = 0; i < pixels.length; i += 4) {
+                var r = pixels[i];
+                var g = pixels[i + 1];
+                var b = pixels[i + 2];
+                var alpha = pixels[i + 3];
+
+                // Convert rgb to hsl
+                var hsl = rgbToHsl(r, g, b);
+
+                // Set the alpha value based on the brightness of the pixel
+                pixels[i + 3] = alpha * (hsl[2] * 2);
+            }
+
+            context.putImageData(imageData, 0, 0);
+
+            // Request the next frame
+            requestAnimationFrame(animate);
+        }
+
+        // Convert rgb to hsl
+        function rgbToHsl(r, g, b) {
+            r /= 255, g /= 255, b /= 255;
+
+            var max = Math.max(r, g, b), min = Math.min(r, g, b);
+            var h, s, l = (max + min) / 2;
+
+            if (max == min) {
+                h = s = 0; // achromatic
+            } else {
+                var d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h /= 6;
+            }
+
+            return [h, s, l];
+        }
+
+        // Start the animation
+        animate();
+    </script>
+</body>
+</html>
