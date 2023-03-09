@@ -1,0 +1,114 @@
+---
+title: Mouse Cursor Simulation
+date: 2023-03-09 20:21:42
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mouse Cursor Simulation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            cursor: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    
+    <script>
+        // Set up canvas and context
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    
+        // Set up initial variables
+        var particles = [];
+        var maxParticles = 50;
+        var mouse = {x: 0, y: 0};
+    
+        // Add event listeners for mouse movement
+        document.addEventListener("mousemove", function(event) {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
+    
+        // Particle object constructor function
+        function Particle(x, y) {
+            this.x = x;
+            this.y = y;
+            this.radius = Math.random() * 20 + 10;
+            this.color = "rgba(" + Math.floor(Math.random() * 255) + ", " +
+                Math.floor(Math.random() * 255) + ", " +
+                Math.floor(Math.random() * 255) + ", " +
+                Math.random() + ")";
+            this.vx = (Math.random() - 0.5) * 20;
+            this.vy = (Math.random() - 0.5) * 20;
+    
+            // Update function for particle object
+            this.update = function() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vx *= 0.9;
+                this.vy *= 0.9;
+                this.radius -= 0.1;
+            };
+    
+            // Draw function for particle object
+            this.draw = function() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            };
+        }
+    
+        // Function to create new particles
+        function createParticle() {
+            if (particles.length < maxParticles) {
+                var particle = new Particle(mouse.x, mouse.y);
+                particles.push(particle);
+            }
+        }
+    
+        // Animation loop
+        function loop() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+            // Create new particles
+            createParticle();
+    
+            // Update and draw particles
+            particles.forEach(function(particle) {
+                particle.update();
+                particle.draw();
+            });
+    
+            // Remove particles that are too small
+            particles = particles.filter(function(particle) {
+                return particle.radius > 0;
+            });
+    
+            // Call loop function again
+            requestAnimationFrame(loop);
+        }
+    
+        // Start animation loop
+        loop();
+    </script>
+</body>
+</html>
