@@ -25,6 +25,4 @@ description:      Memes
 # sort pages
 collections:
   pages:
-    output: true
     sort_by: date
-    reverse: true
