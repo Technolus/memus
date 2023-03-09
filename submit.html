@@ -32,7 +32,51 @@
         var previewWindow = window.open("", "Preview");
         previewWindow.document.write(contents);
       }
+
+      function previewLive(state) {
+				var livePreviewEnabled;
+        var contents = document.getElementById("contents");
+        var previewFrame = document.getElementById("preview-frame");
+        var previewContainer = document.getElementById("preview-container");
+				const updateLivePreview = () =>	previewFrame.srcdoc = contents.value;
+        if (previewFrame.style.display == "none" || state) {
+					livePreviewEnabled = true;
+          previewContainer.style.display = "block";
+          previewFrame.style.display = "block";
+          previewFrame.srcdoc = contents.value;
+					contents.addEventListener("input", updateLivePreview);
+        } else {
+					livePreviewEnabled = false;
+          previewContainer.style.display = "none";
+          previewFrame.style.display = "none";
+          previewFrame.srcdoc = "";
+					contents.removeEventListener("input", updateLivePreview);
+        }
+      }
+	    window.addEventListener("load", function() {
+	      previewLive(true); // toggle on by default
+	    });
     </script>
+    <style>
+			#preview-container {
+				position: fixed;
+				top: 0;
+				right: 0;
+				width: 50%;
+				height: 100%;
+				display: block;
+			}
+      #preview-frame {
+        width: 100%;
+        height: 100%;
+        border-left: 2px solid black;
+	      display: block;
+      }
+	  
+      #myForm {
+        margin-right: 50%;
+      }
+    </style>
   </head>
   <body>
     <form id="myForm" method="POST" action="https://memeuploader.thetechnolus.com/">
@@ -41,9 +85,13 @@
       <label for="contents">html:</label>
       <textarea id="contents" name="contents" cols="80" rows="10" style="font-family: monospace; font-size: 16px;"></textarea>
       <br><br>
-      <input type="button" value="Preview HTML" onclick="previewHTML()">
+      <input type="button" value="Live Preview Toggle" onclick="previewLive()">
+      <input type="button" value="Popup Preview" onclick="previewHTML()">
       <input type="submit" value="Submit" onclick="return submitForm()">
     </form>
+    <div id="preview-container">
+      <iframe id="preview-frame"></iframe>
+    </div>
     <p id="result"></p>
   </body>
 </html>
