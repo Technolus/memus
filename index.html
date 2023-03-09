@@ -32,11 +32,17 @@
 <body>
     <h1>Welcome to My Meme Page</h1>
     <p>Check out these awesome memes:</p>
-	{% for page in site.pages %}
+<!-- 	{% for page in site.pages %}
 	  {% if page.url contains '/memes/' %}
 		<a href="{{ page.url | remove_first:'/' }}">{{ page.title }}</a><br>
 	  {% endif %}
-	{% endfor %}
- 
+	{% endfor %} -->
+{% assign sorted_pages = site.pages | sort: 'date' | reverse %}
+{% for page in sorted_pages %}
+  {% if page.url contains '/memes/' %}
+    <a href="{{ page.url | remove_first:'/' }}">{{ page.title }}</a><br>
+  {% endif %}
+{% endfor %}
+	
 </body>
 </html>
