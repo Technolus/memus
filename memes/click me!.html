@@ -1,0 +1,32 @@
+---
+title: Welcome to the Amazing Website!
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amazing Website</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Amazing Website!</h1>
+    </header>
+    <main>
+        <p>Click the button to see something amazing!</p>
+        <button onclick="rickRoll()">Click Me!</button>
+    </main>
+    <footer>
+        <p>Thanks for visiting!</p>
+    </footer>
+
+    <script>
+        function rickRoll() {
+            const randNum = Math.floor(Math.random() * 10) + 1;
+            if (randNum == 1) {
+                window.location.href = "https://youtu.be/HJB1eix15rI";
+            } else {
+                window.location.href = "https://youtu.be/NUnFiBILSdQ";
+            }
+        }
+    </script>
+</body>
+</html>
