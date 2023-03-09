@@ -1,0 +1,139 @@
+---
+title: Random Unicorn Meme Generator
+date: 2023-03-09 14:32:30
+---
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Unicorn Meme Generator</title>
+	<style type="text/css">
+/* Styling for the unicorns */
+		.unicorn {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 15%;
+			display: none;
+			animation-name: spin;
+			animation-duration: 3s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+		}
+
+		/* Rainbow animation */
+		@keyframes rainbow {
+			0% {
+				background-position: 0% 50%;
+			}
+			50% {
+				background-position: 100% 50%;
+			}
+			100% {
+				background-position: 0% 50%;
+			}
+		}
+
+		/* Styling for the body */
+		body {
+			background-image: linear-gradient(135deg, #f8c6e1 10%, #cf8be3 25%, #9b6bcc 50%, #21c1d6 75%, #6fb5d6 90%);
+			background-size: 400% 400%;
+			animation: rainbow 10s ease-in-out infinite;
+		}
+
+		/* Styling for the button */
+		button {
+			font-size: 1.5rem;
+			background-color: #f8c6e1;
+			border: 2px solid #cf8be3;
+			color: #6fb5d6;
+			padding: 1rem 2rem;
+			border-radius: 10px;
+			margin-top: 2rem;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #cf8be3;
+			color: #f8c6e1;
+		}
+
+		/* Styling for the stop button */
+		.stop-btn {
+			font-size: 1.5rem;
+			background-color: #cf8be3;
+			border: 2px solid #f8c6e1;
+			color: #f8c6e1;
+			padding: 1rem 2rem;
+			border-radius: 10px;
+			margin-top: 2rem;
+			cursor: pointer;
+		}
+
+		.stop-btn:hover {
+			background-color: #f8c6e1;
+			color: #cf8be3;
+		}
+	</style>
+</head>
+<body>
+	<h1>Random Unicorn Meme Generator</h1>
+	<p>Click the button below to generate a random unicorn meme!</p>
+	<button id="generate-btn">Generate!</button>
+
+        <div id="unicorn-container"></div>
+
+	<script type="text/javascript">
+		// Function to generate a random number between min and max
+		function getRandomNumber(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+		// Function to generate a random unicorn meme
+function generateMeme() {
+	// Clear the unicorn container
+	var unicornContainer = document.getElementById('unicorn-container');
+	unicornContainer.innerHTML = '';
+
+	// Generate a random number between 5 and 10 to determine the number of unicorns to spawn
+	var numUnicorns = getRandomNumber(5, 10);
+
+	// Generate and position the unicorns
+	for (var i = 0; i < numUnicorns; i++) {
+		// Create a new unicorn image element
+		var unicornImg = document.createElement('img');
+		unicornImg.className = 'unicorn';
+		unicornImg.src = 'https://cdn-icons-png.flaticon.com/512/3468/3468106.png';
+
+		// Set the initial position and rotation of the unicorn
+		unicornImg.style.top = getRandomNumber(0, window.innerHeight - 200) + 'px';
+		unicornImg.style.left = getRandomNumber(0, window.innerWidth - 200) + 'px';
+		unicornImg.style.transform = 'rotate(' + getRandomNumber(0, 360) + 'deg)';
+
+		// Add the unicorn to the container
+		unicornContainer.appendChild(unicornImg);
+	}
+
+	// Apply rotating and rainbow animation effects to the unicorns
+	var unicorns = document.querySelectorAll('.unicorn');
+	for (var i = 0; i < unicorns.length; i++) {
+		unicorns[i].style.display = 'block';
+		unicorns[i].style.animationName = 'spin';
+		unicorns[i].style.animationDuration = getRandomNumber(2, 6) + 's';
+		unicorns[i].style.animationIterationCount = 'infinite';
+		unicorns[i].style.animationTimingFunction = 'linear';
+		unicorns[i].style.animationDelay = getRandomNumber(0, 3) + 's';
+		unicorns[i].style.animationDirection = getRandomNumber(0, 1) == 0 ? 'normal' : 'reverse';
+		unicorns[i].style.backgroundImage = 'linear-gradient(90deg, #ffcc00 0%, #ff3300 50%, #660000 100%)';
+		unicorns[i].style.backgroundSize = '400% 400%';
+		unicorns[i].style.animation = 'rainbow ' + getRandomNumber(8, 12) + 's ease-in-out infinite';
+	}
+}
+
+	// Event listener for the generate button
+	var generateBtn = document.getElementById('generate-btn');
+	generateBtn.addEventListener('click', function() {
+		setInterval(generateMeme, 700);
+	});
+</script>
+</body>
+</html>
