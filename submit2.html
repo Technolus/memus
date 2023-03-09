@@ -3,28 +3,6 @@
   <head>
     <title>Post Request Example</title>
     <script>
-      var autoPreviewEnabled = false;
-      var previewWindow;
-
-      function toggleAutoPreview() {
-        autoPreviewEnabled = !autoPreviewEnabled;
-        var toggleButton = document.getElementById("togglePreview");
-        if (autoPreviewEnabled) {
-          previewWindow = window.open("", "previewWindow", "width=100%,height=100%");
-          toggleButton.innerText = "Pause Auto Preview";
-        } else {
-          previewWindow.close();
-          toggleButton.innerText = "Enable Auto Preview";
-        }
-      }
-
-      function updatePreview() {
-        if (autoPreviewEnabled) {
-          var previewContents = document.getElementById("contents").value;
-          previewWindow.document.body.innerHTML = previewContents;
-        }
-      }
-
       function submitForm() {
         var form = document.getElementById("myForm");
         var xhr = new XMLHttpRequest();
@@ -37,7 +15,7 @@
               document.getElementById("result").innerHTML = "Error: " + response.error;
             } else {
               response.url = response.url.replace("https://technolus.github.io/memus-automaticus", "https://rollthememes.thetechnolus.com");
-              document.getElementById("result").innerHTML = `Returned URL: <a href="${response.url}" target="_blank">${response.url}</a>`;
+              document.getElementById("result").innerHTML = `Returned URL: <a href="${response.url}">${response.url}</a><br><small>(results might take a literally minute to show up)</small>`;
             }
           }
         };
@@ -46,38 +24,26 @@
           contents: form.elements["contents"].value
         };
         xhr.send(JSON.stringify(formData));
-        updatePreview();
         return false;
       }
+
+      function previewHTML() {
+        var contents = document.getElementById("contents").value;
+        var previewWindow = window.open("", "Preview");
+        previewWindow.document.write(contents);
+      }
     </script>
-    <style>
-      #previewContainer {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 50%;
-        height: 100%;
-      }
-      #contents {
-        width: 50%;
-        height: 100%;
-      }
-    </style>
   </head>
   <body>
     <form id="myForm" method="POST" action="https://memeuploader.thetechnolus.com/">
       <label for="filePath">Title:</label>
       <input type="text" id="filePath" name="filePath"><br><br>
-      <div id="formContents">
-        <label for="contents">HTML:</label>
-        <textarea id="contents" name="contents" cols="80" rows="10" style="font-family: monospace; font-size: 16px;" oninput="updatePreview()"></textarea>
-      </div>
+      <label for="contents">html:</label>
+      <textarea id="contents" name="contents" cols="80" rows="10" style="font-family: monospace; font-size: 16px;"></textarea>
       <br><br>
+      <input type="button" value="Preview HTML" onclick="previewHTML()">
       <input type="submit" value="Submit" onclick="return submitForm()">
-      <button id="togglePreview" onclick="toggleAutoPreview()">Enable Auto Preview</button>
     </form>
-    <div id="previewContainer"></div>
     <p id="result"></p>
   </body>
 </html>
