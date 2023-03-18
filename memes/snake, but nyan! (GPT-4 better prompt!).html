@@ -1,6 +1,6 @@
 ---
 title: snake, but nyan! (GPT-4 better prompt!)
-date: 2023-03-18 20:24:49
+date: 2023-03-18 20:25:58
 ---
 <!--
 GPT-4 (Better prompt experiment)
@@ -75,10 +75,10 @@ Also show the current score and a high score on top.
   transform: translateX(-50%);
   width: 120px;
   height: 120px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
 }
 
 .control {
@@ -86,7 +86,6 @@ Also show the current score and a high score on top.
   height: 40px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.5);
-  margin: 5px;
   touch-action: manipulation;
 }
 
