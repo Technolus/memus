@@ -1,12 +1,17 @@
 ---
-title: Gpt4 snake, but nya!
+title: Gpt4 snake, but nyan!
 date: 2023-03-18 13:58:47
 ---
+<!--
+GPT-4
+Code the snake game in a single html file, controllable with the arrow keys of the keyboard. make it so this image (https://www.pngall.com/wp-content/uploads/2016/06/Nyan-Cat-Free-Download-PNG.png) is used as the head of the snake and make the body a css generated nyan cat-like rainbow.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gpt4 snake, but nyan!</title>
   <style>
     #game-board {
       position: relative;
@@ -38,6 +43,7 @@ date: 2023-03-18 13:58:47
 </head>
 <body>
   <div id="game-board"></div>
+  <br/>(Use the arrow keys to move, refresh to reset.)
   <script>
     const gameBoard = document.getElementById('game-board');
     const size = 15;
@@ -121,5 +127,5 @@ function handleKeydown(event) {
 }
 
 document.addEventListener('keydown', handleKeydown);
-gameInterval = setInterval(gameLoop, 100);
+gameInterval = setInterval(gameLoop, 200);
 </script> </body> </html> 
