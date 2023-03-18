@@ -1,6 +1,6 @@
 ---
 title: snake, but nyan! (GPT-4 better prompt!)
-date: 2023-03-18 20:29:03
+date: 2023-03-18 21:42:19
 ---
 <!--
 GPT-4 (Better prompt experiment)
@@ -50,67 +50,27 @@ Also show the current score and a high score on top.
       color: white;
       font-size: 24px;
     }
-    //#mobile-controls {
-    //  position: fixed;
-    //  bottom: 0;
-    //  left: 0;
-    //  width: 100%;
-    //  display: flex;
-    //  justify-content: center;
-    //  align-items: center;
-    //}
 
-    //.control {
-    //  width: 50px;
-    //  height: 50px;
-    //  border-radius: 50%;
-    //  background-color: rgba(255, 255, 255, 0.5);
-    //  margin: 10px;
-    //  touch-action: manipulation;
-    //}
-#mobile-controls {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 120px;
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-}
+    #mobile-controls {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 120px;
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+   }
 
-.control {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
-  touch-action: manipulation;
-}
+   .control {
+      touch-action: manipulation;
+   }
 
-#up {
-  grid-row: 1;
-  grid-column: 2;
-}
-
-#left {
-  grid-row: 2;
-  grid-column: 1;
-}
-
-#down {
-  grid-row: 3;
-  grid-column: 2;
-}
-
-#right {
-  grid-row: 2;
-  grid-column: 3;
-}
   </style>
 </head>
-<body>
+<body class="control">
   <div id="game-board"></div>
   <div id="score">Score: 0 | High Score: 0</div>
   <div id="mobile-controls">
