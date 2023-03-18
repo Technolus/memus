@@ -1,0 +1,131 @@
+---
+title: Snake Game
+date: 2023-03-18 06:52:13
+---
+<!--
+GPT-3.5-Turbo
+Code the snake game in a single html file, controllable with the arrow keys of the keyboard. make it so this image (https://www.pngall.com/wp-content/uploads/2016/06/Nyan-Cat-Free-Download-PNG.png) is used as the head of the snake and make the body a css generated nyan cat-like rainbow.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Snake Game</title>
+	<style>
+		canvas {
+			border: 1px solid #ccc;
+			margin: 0 auto;
+			display: block;
+		}
+
+		img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 50px;
+			height: 50px;
+		}
+
+		.rainbow {
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			animation: rainbow 2s ease infinite;
+		}
+
+		@keyframes rainbow {
+			0% {background-color: red;}
+			16.6% {background-color: orange;}
+			33.3% {background-color: yellow;}
+			50% {background-color: green;}
+			66.6% {background-color: blue;}
+			83.3% {background-color: indigo;}
+			100% {background-color: violet;}
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+	<img src="https://www.pngall.com/wp-content/uploads/2016/06/Nyan-Cat-Free-Download-PNG.png" alt="Nyan Cat" id="nyan-cat">
+	
+	<script>
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		var nyanCat = document.getElementById("nyan-cat");
+		var snake = [{x: 10, y: 10}];
+		var direction = "right";
+		var rainbowColors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+		var rainbowIndex = 0;
+
+		function drawSnake() {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.drawImage(nyanCat, snake[0].x, snake[0].y, 50, 50);
+			for (var i = 1; i < snake.length; i++) {
+				var rainbow = document.createElement("div");
+				rainbow.className = "rainbow";
+				rainbow.style.top = snake[i].y + "px";
+				rainbow.style.left = snake[i
+
+
+
+].x + "px";
+rainbow.style.backgroundColor = rainbowColors[rainbowIndex];
+rainbowIndex = (rainbowIndex + 1) % rainbowColors.length;
+document.body.appendChild(rainbow);
+}
+}
+
+
+	function updateSnake() {
+		for (var i = snake.length - 1; i > 0; i--) {
+			snake[i].x = snake[i - 1].x;
+			snake[i].y = snake[i - 1].y;
+		}
+		if (direction === "right") {
+			snake[0].x += 10;
+		} else if (direction === "left") {
+			snake[0].x -= 10;
+		} else if (direction === "up") {
+			snake[0].y -= 10;
+		} else if (direction === "down") {
+			snake[0].y += 10;
+		}
+	}
+
+	function checkCollisions() {
+		if (snake[0].x < 0 || snake[0].x >= canvas.width || snake[0].y < 0 || snake[0].y >= canvas.height) {
+			clearInterval(interval);
+			alert("Game over!");
+		}
+		for (var i = 1; i < snake.length; i++) {
+			if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
+				clearInterval(interval);
+				alert("Game over!");
+			}
+		}
+	}
+
+	function gameLoop() {
+		updateSnake();
+		checkCollisions();
+		drawSnake();
+	}
+
+	var interval = setInterval(gameLoop, 100);
+
+	document.addEventListener("keydown", function(event) {
+		if (event.keyCode === 39 && direction !== "left") {
+			direction = "right";
+		} else if (event.keyCode === 37 && direction !== "right") {
+			direction = "left";
+		} else if (event.keyCode === 38 && direction !== "down") {
+			direction = "up";
+		} else if (event.keyCode === 40 && direction !== "up") {
+			direction = "down";
+		}
+	});
+</script>
+</body>
+</html>
