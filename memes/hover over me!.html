@@ -1,0 +1,46 @@
+---
+title: Cool Visual Effect
+date: 2023-04-09 18:54:06
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Visual Effect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            font-size: 48px;
+            cursor: pointer;
+            transition: color 0.5s;
+        }
+    </style>
+    <script>
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function changeColor() {
+            const coolText = document.getElementById('coolText');
+            coolText.style.color = getRandomColor();
+        }
+    </script>
+</head>
+<body>
+    <h1 id="coolText" onmouseover="changeColor()" onmouseout="changeColor()">Hover over me!</h1>
+</body>
+</html>
