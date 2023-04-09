@@ -1,0 +1,66 @@
+---
+title: The Dog of Wisdom 🐶
+date: 2023-04-09 18:55:37
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog of Wisdom - Meme Mockery</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #f0e68c;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            color: #ff4500;
+            text-shadow: 2px 2px #000;
+        }
+        img {
+            width: 30%;
+            border: 5px solid #ffa500;
+            border-radius: 50%;
+            margin: 1em;
+        }
+        button {
+            font-size: 1.5em;
+            background-color: #ffa500;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff8c00;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>The Dog of Wisdom 🐶</h1>
+    <img id="dog" src="https://example.com/dog_of_wisdom.jpg" alt="Dog of Wisdom">
+    <p id="joke"></p>
+    <button onclick="getRandomJoke()">Get Wisdom</button>
+<script>
+    const jokes = [
+        "Why did the dog sit in the shade? Because he didn't want to be a hot dog!",
+        "What do you get when you cross a dog with a computer? A lot of bites!",
+        "Why was the dog a great musician? Because his bark was worse than his bite!",
+        "What kind of dog does Dracula have? A bloodhound!",
+        "Why did the dog go to court? Because he got a barking ticket!",
+    ];
+
+    function getRandomJoke() {
+        const randomIndex = Math.floor(Math.random() * jokes.length);
+        const joke = jokes[randomIndex];
+        document.getElementById('joke').innerHTML = joke;
+    }
+</script>
+</body>
+</html>
